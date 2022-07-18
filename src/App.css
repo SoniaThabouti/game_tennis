@@ -41,9 +41,12 @@
 } */
 
 body {
-  background-color:  #000000;
+  /*background-color:  #000000;*/
+  background-color:  #ffffff;
 }
 
 #three-canvas-container {
   height: 100vh !important;
 }
+
+

@@ -12,9 +12,22 @@
     "@react-three/drei": "^9.17.1",
     "@react-three/fiber": "^8.2.0",
     "gsap": "^3.10.4",
+    "mdb-react-ui-kit": "^4.1.0",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.4.0",
     "react-dom": "^18.2.0",
-    "three": "^0.142.0"
+    "react-moving-text": "0.0.7",
+    "react-player": "^2.10.1",
+    "react-router-dom": "^6.3.0",
+    "react-sound": "^1.2.0",
+    "react-spring": "^9.5.0",
+    "react-spring-3d-carousel": "^1.2.1",
+    "react-video-js-player": "^1.1.1",
+    "redux": "^4.2.0",
+    "styled-components": "^5.3.5",
+    "three": "^0.142.0",
+    "uuid": "^8.3.2",
+    "video-react": "^0.15.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.15",

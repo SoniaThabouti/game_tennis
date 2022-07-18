@@ -8,6 +8,8 @@ import * as THREE from "three";
 import gsap from "gsap";
 import Racket from "./racket";
 import { TextureLoader } from 'three/src/loaders/TextureLoader';
+import {Html} from '@react-three/drei';
+import Page0 from "../three/page0";
 
 export default function Three() {
     //texture of field
@@ -64,9 +66,11 @@ export default function Three() {
 
     return (
         <>
+        
+
         {/*We'll use a perspective camera */}
         <PerspectiveCamera makeDefault position={[0,1,5]}/>
-        <OrbitControls ref= {orbitControlsRef} minPolarAngle={angleToRadians(60)} maxPolarAngle={angleToRadians(80)}/>
+        <OrbitControls ref= {orbitControlsRef} minPolarAngle={angleToRadians(60)} maxPolarAngle={angleToRadians(80)} enableZoom={false}/>
 
         {/*Ball */}
         <mesh position={[-2,2.5,0]} castShadow ref={ballRef} >
@@ -92,7 +96,11 @@ export default function Three() {
          
         {/* Environmnet */}
         <Environment background>
+       
                 <mesh>
+                    <Html>
+                    <Page0 />
+                    </Html>
                     <sphereGeometry args={[50, 100, 100]} />
                     <meshBasicMaterial  side={THREE.BackSide} map={mapTexture1} />
                 </mesh>

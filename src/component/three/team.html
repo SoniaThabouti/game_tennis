@@ -1,0 +1,108 @@
+<html>
+    <head>
+    <script src="./three.js"></script>
+    <style>
+        body{
+            margin:0;
+            padding:0;
+        }
+        canvas{
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+    </head>
+    <body>
+        <script>
+            const image_radius = 100;
+            const wheel_radius= 400;
+            const number_of_images= 8;
+            const radian_interval= (2 * Math.PI) / number_of_images;
+            const center_of_wheel={
+                x:0,
+                y:0
+            }
+
+            /***************scene + objects****/
+            const scene = new THREE.Scene();
+            const group_cards= new THREE.Group();
+
+            let loader = null;
+            let texture= null;
+            let material= null;
+            let circle= null;
+            let mesh= null;
+
+            scene.background= new THREE.color(0x8FBCD4);
+
+            for(let i=0; i< number_of_images;i++){
+              loader= new THREE.TextureLoader();
+              texture= loader.load('sonia.png');
+              texture.minFilter= THREE.LinearFilter;
+
+              material = new THREE.MeshBasicMaterial({
+                map:texture,
+                transparent: true,
+                opacity:1
+              });
+
+              circle= new THREE.CircleGeometry(image_radius,100);
+              mesh= new THREE.mesh(circle, material);
+
+              mesh.material.side= THREE.DoubleSide;
+
+              mesh.position.set(
+                center_of_wheel.x + Math.cos(radian_interval * i) * wheel_radius ,
+                center_of_wheel.y + Math.sin(radian_interval * i) * wheel_radius ,
+                0
+              );
+              group.add(mesh);
+            }
+
+            scene.add(group_cards);
+
+            /*------------camera----------*/
+            const fieldOfView= 75;
+            const aspectRatio= window.ineerWidth / window.ineerHeight;
+            const nearPlane= 0.1;
+            const farPlane= 1000;
+            const camera= new THREE.PerspectiveCamera(fieldOfView, aspectRatio,nearPlane,farPlane);
+            
+            camera.position.z= 1000;
+
+            /*-------render---------------*/
+            const render= new THREE.webGLRenderer({
+                antialias: true
+            });
+
+            renderer.setSize(window.innerWidth, window.innerHeight);
+
+
+            document.querySelector('body').appendChild(renderer.domElement);
+
+            let scroll_speed=0.0;
+            document.addEventListener('wheel', event =>{
+               scroll_speed= event.deltaY *(Math.Pi /180) * 0.2;
+
+               group_cards.rotation.z += -1.0 * scroll_speed;
+            
+               for( let i=0; i< group_cards.children.length;i++){
+                 group_cards.children[i].rotation.z += scroll_speed;
+               }
+               
+            });
+
+            requenstAnimationFrame(animate);
+
+            function animate(){
+                requestAnimationFrame(animate);
+
+                renderer.render(scene,camera);
+
+            }
+
+        </script>
+    </body>
+</html>

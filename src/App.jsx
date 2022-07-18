@@ -38,14 +38,35 @@ import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import './App.css';
 import Three from './component/three';
+import { useState } from 'react';
+import './App.css'
+import Page1 from './component/three/page1';
+//import { Button, } from 'react-bootstrap';
+//import {BrowserRouter as Router , Route,Switch} from 'react-router-dom';
+
 
 function App() {
   return (
+/*<Router>
+  <Switch>
+    <Route>
     <Canvas id="three-canvas-container" shadows>
       <Suspense fallback={null}>
         <Three/>
       </Suspense>
     </Canvas>
+    </Route>
+    
+    <Route>
+      <Page1/>
+    </Route>
+    </Switch>
+  </Router>*/
+
+  <Page1/>
+
+    
+
   )
 }
 
